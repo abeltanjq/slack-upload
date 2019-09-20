@@ -1,0 +1,24 @@
+name: 'Slack Upload'
+description: 'Upload files to Slack'
+inputs:
+  filename:
+    description: 'Name of the file to upload'
+    required: true
+  channel:
+    description: 'Channel name in Slack'
+    required: true
+  slack-api-token:
+    description: 'Slack admin token'
+    required: true
+  title:
+    description: 'Title of the message'
+    required: true
+    default: ''
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.filename }}
+    - ${{ inputs.channel }}
+    - ${{ inputs.slack-api-token }}
+    - ${{ inputs.title }}
